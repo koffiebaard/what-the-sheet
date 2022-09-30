@@ -20,6 +20,7 @@
     "scripts": {
         "start": "cd src; php -S localhost:8000",
         "test": "vendor/bin/phpunit --verbose tests",
-        "lint": "vendor/bin/phpcs -n src"
+        "lint": "vendor/bin/phpcs -n src",
+        "lint-fix": "vendor/bin/phpcbf -n src"
     }
 }
