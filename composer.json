@@ -10,7 +10,11 @@
         "phpunit/phpunit": "^9.5",
         "nekofar/slim-test": "^2.0"
     },
+    "autoload": {
+        "psr-4": {"Sheet\\": "src/"}
+    },
     "scripts": {
+        "start": "cd src; php -S localhost:8000",
         "test": "vendor/bin/phpunit --verbose tests"
     }
 }

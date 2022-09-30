@@ -1,5 +1,6 @@
 <?php
-require "sheet.php";
+require "model/sheet.php";
+require "lib.php";
 
 use DI\Container;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -66,29 +67,25 @@ function create_app() {
 
   // Empty sheet
   $app->get('/', function (Request $request, Response $response, $args) {
-    ob_start();
-    require 'show_the_sheet.php';
-    $content = ob_get_clean();
-    $response->getBody()->write($content);
-    
+    $response->getBody()->write(template('show_the_sheet.php'));
     return $response;
   });
 
   // Sheet by ID
   $app->get('/{id:[a-f0-9]+}', function (Request $request, Response $response, $args) {
     $so_sheety = new SoSheety();
+    $sheet = $so_sheety->get_by_id($args['id']);
 
     // 404 not found
-    if ($so_sheety->get_by_id($args['id']) === false) {
+    if ($sheet === false) {
       $response->getBody()->write('No sheet found.');
       return $response->withStatus(404);
     }
 
-    ob_start();
-    require 'show_the_sheet.php';
-    $content = ob_get_clean();
-    $response->getBody()->write($content);
-
+    $response->getBody()->write(template(
+      'show_the_sheet.php', [
+      'sheet' => $sheet
+    ]));
     return $response;
   });
   

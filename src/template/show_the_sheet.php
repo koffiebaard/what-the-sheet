@@ -9,7 +9,7 @@
   </head>
   <body>
 	<div id="sheet-container">
-    <img src="assets/what-the-sheet.png" id="sheet">
+    <img src="/assets/what-the-sheet.png" id="sheet">
     <input type="text" name="class" value="<?=$sheet['class'] ?? ''; ?>" id="class" placeholder="class" />
     <input type="text" name="name" value="<?=$sheet['name'] ?? ''; ?>" id="name" placeholder="Name" />
     <input type="text" name="race" value="<?=$sheet['race'] ?? ''; ?>" id="race" placeholder="Race" />
