@@ -9,6 +9,9 @@ on:
 permissions:
   contents: read
 
+env:
+  WTS_DB_IN_MEMORY: 1
+
 jobs:
   build:
 
