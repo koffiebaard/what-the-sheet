@@ -24,7 +24,7 @@ class SoSheety
         );
       }
     } catch (Exception $e) {
-      error_log($e->getMessage(), 0);
+      $logger->error($e->getMessage());
       die("Something went wrong.");
     }
   }

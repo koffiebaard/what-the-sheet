@@ -9,7 +9,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
 
-function create_app() {
+function create_app($logger = null) {
   // Create Container using PHP-DI
   $container = new Container();
   AppFactory::setContainer($container);
@@ -22,15 +22,17 @@ function create_app() {
     Throwable $exception,
     bool $displayErrorDetails,
     bool $logErrors,
-    bool $logErrorDetails,
-    ?LoggerInterface $logger = null
-  ) use ($app) {
-      error_log($exception->getMessage(), 0);
+    bool $logErrorDetails
+  ) use (
+    $app,
+    $logger
+) {
+      $logger->error($exception->getMessage());
       $response = $app->getResponseFactory()->createResponse();
       $response->getBody()->write(template('500.html'));
       return $response->withStatus(500);
   };
-
+  
   $errorMiddleware = $app->addErrorMiddleware(true, true, true);
   $errorMiddleware->setDefaultErrorHandler($customErrorHandler);
 
