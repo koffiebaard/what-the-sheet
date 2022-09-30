@@ -1,4 +1,7 @@
 {
+    "name": "koffiebaard/what-the-sheet",
+    "description": "What The Sheet is the best thing since sliced cake.",
+    "license": "GPL-3.0-or-later",
     "require": {
         "paragonie/random-lib": "^2.0",
         "vlucas/phpdotenv": "^5.4",
@@ -16,6 +19,7 @@
     },
     "scripts": {
         "start": "cd src; php -S localhost:8000",
-        "test": "vendor/bin/phpunit --verbose tests"
+        "test": "vendor/bin/phpunit --verbose tests",
+        "lint": "vendor/bin/phpcs -n src"
     }
 }
