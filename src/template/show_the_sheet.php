@@ -36,7 +36,7 @@
   </dialog>
   <dialog class="share">
     <h1>Share sheet</h1>
-    <textarea>http://localhost:8000/share/<?=$sheet['share_token'] ?? ''; ?></textarea>
+    <textarea><?=$web_address; ?>/share/<?=$sheet['share_token'] ?? ''; ?></textarea>
     <button>Close</button>
   </dialog>
   <script src="assets/script.js"></script>

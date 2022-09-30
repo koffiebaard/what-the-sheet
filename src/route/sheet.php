@@ -22,7 +22,8 @@ function addSheetRoutes($app, $so_sheety) {
     $response->getBody()->write(template(
       'show_the_sheet.php',
       [
-      'sheet' => $sheet
+        'sheet' => $sheet,
+        'web_address' => getenv('WTS_WEB_ADDRESS')
       ]
     ));
     return $response;
