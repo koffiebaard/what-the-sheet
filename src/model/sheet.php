@@ -1,6 +1,7 @@
 <?php
 class SoSheety {
   private $db_connection;
+  public $required_fields = ['name', 'race', 'class'];
 
   function __construct() {
     try {
@@ -23,6 +24,19 @@ class SoSheety {
 
   private function fetch_all($query, $parameters = []) {
     return $this->execute($query, $parameters)->fetchAll();
+  }
+
+  public function validate($sheet) {
+    $errors = [];
+
+    $fields_in_sheet = count(array_intersect_key(array_flip($this->required_fields), $sheet));
+    $fields_total = count($this->required_fields);
+
+    if ($fields_in_sheet !== $fields_total) {
+      $errors[] = ['Not all parameters are present. We need: ' . implode(', ', $this->required_fields)];
+    }
+
+    return $errors;
   }
 
   public function get_by_id($id) {
