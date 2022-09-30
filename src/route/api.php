@@ -1,13 +1,10 @@
 <?php
-require_once __DIR__."/../model/sheet.php";
-
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-function addAPIRoutes($app) {
+function addAPIRoutes($app, $so_sheety) {
   // Create sheet
-  $app->post('/api/sheet', function (Request $request, Response $response, $args) {
-    $so_sheety = new Sheet\SoSheety();
+  $app->post('/api/sheet', function (Request $request, Response $response, $args) use($so_sheety) {
     $req_data = json_decode($request->getBody(), true) ?? [];
 
     // 400 Bad Request
@@ -24,8 +21,7 @@ function addAPIRoutes($app) {
   });
 
   // Update sheet
-  $app->put('/api/sheet/{id:[a-f0-9]+}', function (Request $request, Response $response, $args) {
-    $so_sheety = new Sheet\SoSheety();
+  $app->put('/api/sheet/{id:[a-f0-9]+}', function (Request $request, Response $response, $args) use($so_sheety) {
     $req_data = json_decode($request->getBody(), true) ?? [];
 
     // 404 not found

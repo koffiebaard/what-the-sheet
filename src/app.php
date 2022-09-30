@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__."/model/sheet.php";
 require "route/sheet.php";
 require "route/api.php";
 require "lib.php";
@@ -33,8 +34,10 @@ function create_app() {
   $errorMiddleware = $app->addErrorMiddleware(true, true, true);
   $errorMiddleware->setDefaultErrorHandler($customErrorHandler);
 
-  $app = addAPIRoutes($app);
-  $app = addSheetRoutes($app);
+  $so_sheety = new Sheet\SoSheety();
+
+  $app = addAPIRoutes($app, $so_sheety);
+  $app = addSheetRoutes($app, $so_sheety);
 
   return $app;
 }

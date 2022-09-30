@@ -11,11 +11,18 @@ class SoSheety
 
   public function __construct() {
     try {
-      $this->db_connection = new PDO(
-        "mysql:host=$_ENV[WTS_DB_HOSTNAME];dbname=$_ENV[WTS_DB_NAME]",
-        $_ENV['WTS_DB_USERNAME'],
-        $_ENV['WTS_DB_PASSWORD']
-      );
+      if (getenv('WTS_DB_IN_MEMORY') && getenv('WTS_DB_IN_MEMORY') == 1) {
+        $this->db_connection = new PDO('sqlite::memory:');
+        $sql = file_get_contents(__DIR__.'/../../structure.sql');
+        $this->db_connection->exec($sql);
+        // $this->db_connection = $this->createDefaultDBConnection($pdo, ':memory:');
+      } else {
+        $this->db_connection = new PDO(
+          'mysql:host=' . getenv('WTS_DB_HOSTNAME') . ';dbname=' . getenv('WTS_DB_NAME'),
+          getenv('WTS_DB_USERNAME'),
+          getenv('WTS_DB_PASSWORD')
+        );
+      }
     } catch (Exception $e) {
       error_log($e->getMessage(), 0);
       die("Something went wrong.");

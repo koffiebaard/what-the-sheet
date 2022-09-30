@@ -1,19 +1,16 @@
 <?php
-require_once __DIR__."/../model/sheet.php";
-
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-function addSheetRoutes($app) {
+function addSheetRoutes($app, $so_sheety) {
   // Empty sheet
-  $app->get('/', function (Request $request, Response $response, $args) {
+  $app->get('/', function (Request $request, Response $response, $args) use($so_sheety) {
     $response->getBody()->write(template('show_the_sheet.php'));
     return $response;
   });
 
   // Sheet by ID
-  $app->get('/{id:[a-f0-9]+}', function (Request $request, Response $response, $args) {
-    $so_sheety = new Sheet\SoSheety();
+  $app->get('/{id:[a-f0-9]+}', function (Request $request, Response $response, $args) use($so_sheety) {
     $sheet = $so_sheety->get_by_id($args['id']);
 
     // 404 not found
@@ -32,8 +29,7 @@ function addSheetRoutes($app) {
   });
 
   // Sheet by share token
-  $app->get('/share/{token:[a-f0-9]+}', function (Request $request, Response $response, $args) {
-    $so_sheety = new Sheet\SoSheety();
+  $app->get('/share/{token:[a-f0-9]+}', function (Request $request, Response $response, $args) use($so_sheety) {
     $sheet = $so_sheety->get_by_share_token($args['token']);
 
     // 404 not found

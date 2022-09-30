@@ -40,13 +40,13 @@ function send_purge_request($url) {
 
 function clear_varnish_cache($id, $share_token) {
   // Only purge when it's enabled
-  if ($_ENV['WTS_CLEAR_CACHE'] != 1) {
+  if (getenv('WTS_CLEAR_CACHE') != 1) {
     return;
   }
 
   // Purge the admin page (by ID)
-  send_purge_request("$_ENV[WTS_WEB_ADDRESS]/$id");
+  send_purge_request(getenv('WTS_WEB_ADDRESS')."/$id");
 
   // Purge the share page (by share token)
-  send_purge_request("$_ENV[WTS_WEB_ADDRESS]/share/$share_token");
+  send_purge_request(getenv('WTS_WEB_ADDRESS')."/share/$share_token");
 }
