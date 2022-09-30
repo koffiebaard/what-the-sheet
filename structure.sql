@@ -7,4 +7,4 @@ CREATE TABLE `sheet` (
   PRIMARY KEY (`id`));
 
 ALTER TABLE `sheet` 
-  ADD COLUMN `share_token` VARCHAR(40) NOT NULL;
+  ADD COLUMN `share_token` VARCHAR(40) NULL;
