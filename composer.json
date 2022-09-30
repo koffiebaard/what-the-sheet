@@ -8,7 +8,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
-        "nekofar/slim-test": "^2.0"
+        "nekofar/slim-test": "^2.0",
+        "squizlabs/php_codesniffer": "*"
     },
     "autoload": {
         "psr-4": {"Sheet\\": "src/"}

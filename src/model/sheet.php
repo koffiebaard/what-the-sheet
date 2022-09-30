@@ -1,11 +1,21 @@
 <?php
-class SoSheety {
+namespace Sheet;
+
+use \PDO;
+use \RandomLib;
+
+class SoSheety
+{
   private $db_connection;
   public $required_fields = ['name', 'race', 'class'];
 
-  function __construct() {
+  public function __construct() {
     try {
-      $this->db_connection = new PDO("mysql:host=$_ENV[DB_HOSTNAME];dbname=$_ENV[DB_NAME]", $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
+      $this->db_connection = new PDO(
+        "mysql:host=$_ENV[WTS_DB_HOSTNAME];dbname=$_ENV[WTS_DB_NAME]",
+        $_ENV['WTS_DB_USERNAME'],
+        $_ENV['WTS_DB_PASSWORD']
+      );
     } catch (Exception $e) {
       error_log($e->getMessage(), 0);
       die("Something went wrong.");
@@ -19,11 +29,11 @@ class SoSheety {
   }
 
   private function fetch($query, $parameters = []) {
-    return $this->execute($query, $parameters)->fetch();
+    return $this->execute($query, $parameters)->fetch(PDO::FETCH_ASSOC);
   }
 
   private function fetch_all($query, $parameters = []) {
-    return $this->execute($query, $parameters)->fetchAll();
+    return $this->execute($query, $parameters)->fetchAll(PDO::FETCH_ASSOC);
   }
 
   public function validate($sheet) {
@@ -52,10 +62,30 @@ class SoSheety {
     ]);
   }
 
+  public function get_by_share_token($share_token) {
+    return $this->fetch('
+      select
+        *
+      from
+        `sheet`
+      where
+        `share_token` = :share_token
+    ', [
+      'share_token' => $share_token
+    ]);
+  }
+
   public function create_sheet($name, $race, $class) {
     $factory = new RandomLib\Factory;
     $generator = $factory->getMediumStrengthGenerator();
-    $id = $generator->generateString(32, 'abcdef0123456789');
+
+    $sheet = [
+      'id'     => $generator->generateString(32, 'abcdef0123456789')
+     ,'name'   => $name
+     ,'race'   => $race
+     ,'class'  => $class
+     ,'share_token'  => $generator->generateString(40, 'abcdef0123456789')
+    ];
 
     $this->execute('
       insert into `sheet` (
@@ -63,21 +93,19 @@ class SoSheety {
         ,`name`
         ,`race`
         ,`class`
+        ,`share_token`
       )
       values (
          :id
         ,:name
         ,:race
         ,:class
+        ,:share_token
       )
-    ', [
-       'id'     => $id
-      ,'name'   => $name
-      ,'race'   => $race
-      ,'class'  => $class
-    ]);
+    ', $sheet);
 
-    return $id;
+    $sheet = $this->get_by_id($sheet['id']);
+    return $sheet;
   }
 
   public function update_sheet($id, $name, $race, $class) {
@@ -89,12 +117,15 @@ class SoSheety {
       where
         `id` = :id
     ', [
-       'name'   => $name
-      ,'race'   => $race
-      ,'class'  => $class
-      ,'id'     => $id
+      'id'     => $id
+     ,'name'   => $name
+     ,'race'   => $race
+     ,'class'  => $class
     ]);
 
-    return $id;
+    $sheet = $this->get_by_id($id);
+    clear_varnish_cache($id, $sheet['share_token']);
+
+    return $sheet;
   }
 }

@@ -1,5 +1,4 @@
 <?php
-require "model/sheet.php";
 require "route/sheet.php";
 require "route/api.php";
 require "lib.php";
@@ -25,10 +24,10 @@ function create_app() {
     bool $logErrorDetails,
     ?LoggerInterface $logger = null
   ) use ($app) {
-    error_log($exception->getMessage(), 0);
-    $response = $app->getResponseFactory()->createResponse();
-    $response->getBody()->write(template('500.html'));
-    return $response->withStatus(500);
+      error_log($exception->getMessage(), 0);
+      $response = $app->getResponseFactory()->createResponse();
+      $response->getBody()->write(template('500.html'));
+      return $response->withStatus(500);
   };
 
   $errorMiddleware = $app->addErrorMiddleware(true, true, true);
@@ -36,6 +35,6 @@ function create_app() {
 
   $app = addAPIRoutes($app);
   $app = addSheetRoutes($app);
-  
+
   return $app;
 }

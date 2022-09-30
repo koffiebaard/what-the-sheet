@@ -2,12 +2,10 @@
 use Nekofar\Slim\Test\Traits\AppTestTrait;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 
-class APITest extends BaseTestCase 
-{
+class APITest extends BaseTestCase {
   use AppTestTrait;
 
-  protected function setUp(): void
-  {
+  protected function setUp(): void {
     $app = create_app();
     $this->setUpApp($app);
   }
