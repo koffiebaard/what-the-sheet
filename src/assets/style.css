@@ -4,8 +4,13 @@ body {
 
 input[type=text] {
   font-size: 18px;
-  border: none;
+  /* border: none; */
+  border: 1px solid #000;
   background-color: transparent;
+
+  height: 30px;
+  position: absolute;
+
 }
 
 #sheet-container {
@@ -18,30 +23,42 @@ input[type=text] {
   z-index: -1;
 }
 
-#class {
-  left: 12%;
-  margin-top: calc(9% - 30px);
-  position: absolute;
-  position: absolute;
-  width: 20%;
-  height: 30px;
-}
+/**** Fields of Terror ****/
 
-#name {
-  left: 41%;
-  margin-top: calc(11% - 30px);
-  position: absolute;
-  width: 25%;
-  height: 30px;
-}
+#class {            left: 12%;    margin-top: calc(9% - 30px);      width: 20%;     }
+#name {             left: 41%;    margin-top: calc(11% - 30px);     width: 25%;     }
+#race {             left: 74%;    margin-top: calc(13% - 30px);     width: 18%;     }
+#level {            right: 3.5%;    margin-top: calc(23% - 30px);   width: 2%;      }
 
-#race {
-  left: 74%;
-  margin-top: calc(13% - 30px);
-  position: absolute;
-  width: 18%;
-  height: 30px;
-}
+#int {              left: 8%;     margin-top: calc(37% - 30px);     width: 2%;      }
+#int_mod {          left: 11.5%;  margin-top: calc(35% - 30px);     width: 2.5%;    }
+#int_saving_throw { left: 21.8%;  margin-top: calc(35.5% - 30px);   width: 2.5%;    }
+#wis {              left: 8.2%;   margin-top: calc(51% - 30px);     width: 2%;      }
+#wis_mod {          left: 11.5%;  margin-top: calc(49% - 30px);     width: 2.5%;    }
+#wis_saving_throw { left: 21.8%;  margin-top: calc(49% - 30px);     width: 2.5%;    }
+#char {             left: 8.2%;   margin-top: calc(64.5% - 30px);   width: 2%;      }
+#char_mod {         left: 11.5%;  margin-top: calc(63% - 30px);     width: 2.5%;    }
+#char_saving_throw {left: 21.8%;  margin-top: calc(63% - 30px);     width: 2.5%;    }
+
+#str {              right: 22.3%;    margin-top: calc(36.5% - 30px);     width: 2%;     }
+#str_mod {          right: 18.5%;    margin-top: calc(35% - 30px);     width: 2%;     }
+#str_saving_throw { right: 8%;    margin-top: calc(35% - 30px);     width: 2.5%;     }
+#dex {              right: 22.3%;    margin-top: calc(50% - 30px);     width: 2%;     }
+#dex_mod {          right: 18.2%;    margin-top: calc(49% - 30px);     width: 2.5%;     }
+#dex_saving_throw { right: 8%;    margin-top: calc(49% - 30px);     width: 2.5%;     }
+#con {              right: 22%;    margin-top: calc(64.5% - 30px);     width: 2%;     }
+#con_mod {          right: 18%;    margin-top: calc(63% - 30px);     width: 2.5%;     }
+#con_saving_throw { right: 8%;    margin-top: calc(63% - 30px);     width: 2.5%;     }
+
+#hp_max {           left: 40%;    margin-top: calc(33% - 30px);     width: 6%;     }
+#hp_cur {           left: 55%;    margin-top: calc(33% - 30px);     width: 6%;     }
+#hp_tmp {           left: 55%;    margin-top: calc(44% - 30px);     width: 6%;     }
+#hit_die {          left: 40%;    margin-top: calc(44% - 30px);     width: 6%;     }
+
+#armor_class {      left: 38.5%;    margin-top: calc(60% - 30px);     width: 3%;     }
+#initiative {       left: 50%;    margin-top: calc(59% - 30px);     width: 3%;     }
+#speed {            left: 61.5%;    margin-top: calc(60% - 30px);     width: 3%;     }
+
 
 button {
   font-size:1rem;

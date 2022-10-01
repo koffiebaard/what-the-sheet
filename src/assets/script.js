@@ -19,11 +19,13 @@ show_dialog_share.addEventListener('click', () => {
 save.addEventListener('click', async() => {
   sheet_id = document.querySelector('#sheet').dataset.id
 
-  sheet = {
-    name: document.querySelector('input[name=name]').value,
-    race: document.querySelector('input[name=race]').value,
-    class: document.querySelector('input[name=class]').value,
-  };
+  let fields = document.querySelectorAll('input[type="text"]');
+
+  // Build the sheet object to send in the request
+  sheet = {};
+  for (let i = 0; i < fields.length; i++) {
+    sheet[fields[i].name] = fields[i].value;
+  }
 
   // Update sheet
   if (sheet_id) {
