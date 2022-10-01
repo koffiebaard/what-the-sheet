@@ -14,7 +14,7 @@ function addAPIRoutes($app, $so_sheety) {
     }
 
     // Create sheet
-    $sheet = $so_sheety->create_sheet($req_data['name'], $req_data['race'], $req_data['class']);
+    $sheet = $so_sheety->create_sheet($req_data);
     $response->getBody()->write(json_encode($sheet));
 
     return $response->withHeader('Content-type', 'application/json');
@@ -36,7 +36,7 @@ function addAPIRoutes($app, $so_sheety) {
     }
 
     // Update sheet
-    $sheet = $so_sheety->update_sheet($args['id'], $req_data['name'], $req_data['race'], $req_data['class']);
+    $sheet = $so_sheety->update_sheet($args['id'], $req_data);
     $response->getBody()->write(json_encode($sheet));
 
     return $response->withHeader('Content-type', 'application/json');

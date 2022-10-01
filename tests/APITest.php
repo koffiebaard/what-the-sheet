@@ -2,6 +2,38 @@
 use Nekofar\Slim\Test\Traits\AppTestTrait;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 
+define('SHEET_MOCK', [
+  "name" => "Merry",
+  "race" => "Hobbit",
+  "class" => "Rogue",
+  "level" => "3",
+  "int" => "16",
+  "int_mod" => "+3",
+  "int_saving_throw" => "+4",
+  "wis" => "18",
+  "wis_mod" => "+4",
+  "wis_saving_throw" => "+5",
+  "char" => "12",
+  "char_mod" => "+2",
+  "char_saving_throw" => "+5",
+  "str" => "13",
+  "str_mod" => "+1",
+  "str_saving_throw" => "-2",
+  "dex" => "17",
+  "dex_mod" => "+3",
+  "dex_saving_throw" => "+2",
+  "con" => "10",
+  "con_mod" => "-1",
+  "con_saving_throw" => "-1",
+  "hp_max" => "49",
+  "hp_cur" => "25",
+  "hp_tmp" => "0",
+  "hit_die" => "1d8",
+  "armor_class" => "16",
+  "initiative" => "+3",
+  "speed" => "30"
+]);
+
 class APITest extends BaseTestCase {
   use AppTestTrait;
 
@@ -25,11 +57,7 @@ class APITest extends BaseTestCase {
   }
 
   public function test_create_sheet() {
-    $request = $this->createJsonRequest('POST', '/api/sheet', [
-      "name"  => "Pippin",
-      "race"  => "Hobbit",
-      "class" => "Bard"
-    ]);
+    $request = $this->createJsonRequest('POST', '/api/sheet', SHEET_MOCK);
 
     $response = $this->app->handle($request);
 
@@ -37,11 +65,7 @@ class APITest extends BaseTestCase {
   }
 
   public function test_incorrect_update_with_correct_id() {
-    $request = $this->createJsonRequest('POST', '/api/sheet', [
-      "name"  => "Pippin",
-      "race"  => "Hobbit",
-      "class" => "Bard"
-    ]);
+    $request = $this->createJsonRequest('POST', '/api/sheet', SHEET_MOCK);
 
     $response = $this->app->handle($request);
     $data = json_decode((string)$response->getBody());
@@ -53,21 +77,13 @@ class APITest extends BaseTestCase {
   }
 
   public function test_update_sheet() {
-    $request = $this->createJsonRequest('POST', '/api/sheet', [
-      "name"  => "Pippin",
-      "race"  => "Hobbit",
-      "class" => "Bard"
-    ]);
+    $request = $this->createJsonRequest('POST', '/api/sheet', SHEET_MOCK);
 
     $response = $this->app->handle($request);
 
     $data = json_decode((string)$response->getBody());
 
-    $request = $this->createJsonRequest('PUT', '/api/sheet/' . $data->id, [
-      "name"  => "Pippin",
-      "race"  => "Halfling",
-      "class" => "Rogue"
-    ]);
+    $request = $this->createJsonRequest('PUT', '/api/sheet/' . $data->id, SHEET_MOCK);
     $response = $this->app->handle($request);
 
     $this->assertEquals(200, $response->getStatusCode());
