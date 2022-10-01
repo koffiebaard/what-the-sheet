@@ -7,7 +7,7 @@
     <title>What the Sheet</title>
     <link rel="stylesheet" href="/assets/style.css">
   </head>
-  <body>
+  <body id="share">
   <div id="sheet-container">
     <img src="/assets/what-the-sheet.png" id="sheet">
     <input type="text" name="class" value="<?php echo $sheet['class'] ?? ''; ?>" id="class" disabled />

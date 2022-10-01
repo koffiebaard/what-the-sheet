@@ -7,7 +7,7 @@
     <title>What the Sheet</title>
     <link rel="stylesheet" href="/assets/style.css">
   </head>
-  <body>
+  <body id="save">
     <div id="sheet-container">
     <img
       src="/assets/what-the-sheet.png" 
