@@ -3,40 +3,41 @@ namespace Sheet;
 
 use \PDO;
 use \RandomLib;
+use Rakit\Validation\Validator;
 
 class SoSheety
 {
   private $db_connection;
-  public $fields = [
-     'name'
-    ,'race'
-    ,'class'
-    ,'level'
-    ,'int'
-    ,'int_mod'
-    ,'int_saving_throw'
-    ,'wis'
-    ,'wis_mod'
-    ,'wis_saving_throw'
-    ,'char'
-    ,'char_mod'
-    ,'char_saving_throw'
-    ,'str'
-    ,'str_mod'
-    ,'str_saving_throw'
-    ,'dex'
-    ,'dex_mod'
-    ,'dex_saving_throw'
-    ,'con'
-    ,'con_mod'
-    ,'con_saving_throw'
-    ,'hp_max'
-    ,'hp_cur'
-    ,'hp_tmp'
-    ,'hit_die'
-    ,'armor_class'
-    ,'initiative'
-    ,'speed'
+  public $validation_rules = [
+     'name'                   => 'required'
+    ,'race'                   => 'required'
+    ,'class'                  => 'required'
+    ,'level'                  => 'nullable|numeric|min:1|max:100'
+    ,'int'                    => 'nullable|numeric|min:0'
+    ,'int_mod'                => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
+    ,'int_saving_throw'       => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
+    ,'wis'                    => 'nullable|numeric|min:0'
+    ,'wis_mod'                => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
+    ,'wis_saving_throw'       => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
+    ,'char'                   => 'nullable|numeric|min:0'
+    ,'char_mod'               => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
+    ,'char_saving_throw'      => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
+    ,'str'                    => 'nullable|numeric|min:0'
+    ,'str_mod'                => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
+    ,'str_saving_throw'       => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
+    ,'dex'                    => 'nullable|numeric|min:0'
+    ,'dex_mod'                => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
+    ,'dex_saving_throw'       => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
+    ,'con'                    => 'nullable|numeric|min:0'
+    ,'con_mod'                => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
+    ,'con_saving_throw'       => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
+    ,'hp_max'                 => 'nullable|numeric'
+    ,'hp_cur'                 => 'nullable|numeric'
+    ,'hp_tmp'                 => 'nullable|numeric'
+    ,'hit_die'                => 'nullable|regex:/^[0-9]{1,2}d[0-9]{1,2}$/'
+    ,'armor_class'            => 'nullable|numeric'
+    ,'initiative'             => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
+    ,'speed'                  => 'nullable|numeric'
   ];
 
   public function __construct() {
@@ -79,15 +80,25 @@ class SoSheety
   public function validate($sheet) {
     $errors = [];
 
-    $fields_in_sheet = count(array_intersect_key(array_flip($this->fields), $sheet));
-    $fields_total = count($this->fields);
+    $validator = new Validator;
+    $validation = $validator->validate($sheet, $this->validation_rules);
+    
+    $unknown_fields = array_diff_key($sheet, $this->validation_rules);
+    $fields_missing = array_diff_key($this->validation_rules, $sheet);
 
-    if ($fields_in_sheet !== $fields_total) {
-      $errors[] = 'Not all parameters are present. We need: ' . implode(', ', $this->fields);
-    } else if (count($sheet) !== $fields_total) {
-      $errors[] = 'At least one unknown field is present.';
+    if (count($unknown_fields) !== 0) {
+      $errors[] = 'Unknown field(s) in request: ' . implode(', ', array_keys($unknown_fields));
     }
 
+    if (count($fields_missing) !== 0) {
+      $errors[] = 'Field(s) missing in request: ' . implode(', ', array_keys($fields_missing));
+    }
+
+    if ($validation->fails()) {
+      $validation_errors = $validation->errors();
+      $errors = array_merge($errors, $validation_errors->all());
+    }
+    
     return $errors;
   }
 

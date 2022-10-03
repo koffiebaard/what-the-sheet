@@ -24,7 +24,8 @@ save.addEventListener('click', async() => {
   // Build the sheet object to send in the request
   sheet = {};
   for (let i = 0; i < fields.length; i++) {
-    sheet[fields[i].name] = fields[i].value;
+    // Make sure we send either null or an actual value
+    sheet[fields[i].name] = fields[i].value ? fields[i].value : null;
   }
 
   // Update sheet
@@ -38,7 +39,12 @@ save.addEventListener('click', async() => {
         modal_save.close();
       }, 500);
     } else {
-      show_notice_fail();
+      if (response.errors) {
+        show_notice_fail("Validation failed unfortunately", response.errors);
+      } else {
+        show_notice_fail();
+      }
+
       console.log(response);
     }
   // Create sheet
@@ -67,12 +73,22 @@ function show_notice_success() {
   document.querySelector('dialog .notice.success').style.display = "block";
 }
 
-function show_notice_fail() {
+function show_notice_fail(message_override = null, errors = []) {
+  if (message_override) {
+    document.querySelector('dialog .notice.fail').innerHTML = message_override;
+  }
+  if (errors) {
+    document.querySelector('dialog .notice.fail').innerHTML += "<br /><br />Errors:";
+    errors.forEach((error) => {
+      document.querySelector('dialog .notice.fail').innerHTML += `<br />- ${error}`
+    });
+  }
   document.querySelector('dialog .notice.fail').style.display = "block";
 }
 
 function hide_notices() {
-  document.querySelector('dialog .notice').style.display = "none";
+  document.querySelector('dialog .notice.success').style.display = "none";
+  document.querySelector('dialog .notice.fail').style.display = "none";
 }
 
 async function create_sheet(data = {}) {
