@@ -1,11 +1,13 @@
-let show_dialog_save=document.querySelector('button.save');
-let show_dialog_share=document.querySelector('button.share');
+let show_dialog_save=document.querySelector('button.open_save');
+let show_dialog_share=document.querySelector('button.open_share');
 
-let modal_save=document.querySelector('dialog.save');
-let modal_share=document.querySelector('dialog.share');
+var modal_save=document.querySelector('dialog.save');
+var modal_share=document.querySelector('dialog.share');
 
-let save=document.querySelector('dialog.save > button');
-let close_share=document.querySelector('dialog.share > button');
+let save=document.querySelector('dialog.save > button.save');
+let close_save=document.querySelector('dialog.save > button.close');
+let close_share=document.querySelector('dialog.share > button.close');
+
 
 show_dialog_save.addEventListener('click', () => {
   hide_notices();
@@ -44,14 +46,11 @@ save.addEventListener('click', async() => {
       } else {
         show_notice_fail();
       }
-
-      console.log(response);
     }
   // Create sheet
   } else {
     console.log(`Creating sheet`);
     response = await create_sheet(sheet);
-    console.log(response);
 
     if (response && response.id) {
       show_notice_success();
@@ -59,14 +58,22 @@ save.addEventListener('click', async() => {
         window.location.href = `/${response.id}`
       }, 500);
     } else {
-      show_notice_fail();
-      console.log(response);
+      if (response.errors) {
+        show_notice_fail("Validation failed unfortunately", response.errors);
+      } else {
+        show_notice_fail();
+      }
     }
   }
+  console.log(response);
 })
 
 close_share.addEventListener('click', async() => {
   modal_share.close();
+});
+
+close_save.addEventListener('click', async() => {
+  modal_save.close();
 });
 
 function show_notice_success() {

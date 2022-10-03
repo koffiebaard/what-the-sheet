@@ -50,6 +50,6 @@ final class BasicStructure extends AbstractMigration
     }
 
     public function down() {
-        // $this->execute("drop table `sheet`");
+        $this->execute("drop table `sheet`");
     }
 }

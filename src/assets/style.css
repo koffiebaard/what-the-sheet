@@ -11,6 +11,10 @@ input[type=text] {
   text-align: center;
 }
 
+dialog:not([open]) {
+  display: none;
+}
+
 body#share input[type=text] {
   border: none;
 }
@@ -27,39 +31,58 @@ body#share input[type=text] {
 
 /**** Fields of Terror ****/
 
+:root {
+  --saving_throw_width: 4.4%;
+  --saving_throw_left: 21%;
+  --saving_throw_right: 88.5%;
+
+  --ability_mod_width: 5.2%;
+  --ability_mod_left: 10.3%;
+  --ability_mod_right: 78%;
+
+  --ability_score_width: 3%;
+  --ability_score_left: 7.5%;
+  --ability_score_right: 75%;
+}
+
 #class {            left: 12%;    margin-top: calc(9% - 30px);      width: 20%;     }
 #name {             left: 41%;    margin-top: calc(11% - 30px);     width: 25%;     }
 #race {             left: 74%;    margin-top: calc(13% - 30px);     width: 18%;     }
-#level {            right: 2.7%;  margin-top: calc(23% - 30px);     width: 2.5%;      }
+#level {            left: 94%;    margin-top: calc(23% - 30px);     width: 2.5%;    }
 
-#int {              left: 8%;     margin-top: calc(37% - 30px);     width: 2.5%;      }
-#int_mod {          left: 11.5%;  margin-top: calc(35% - 30px);     width: 3.3%;    }
-#int_saving_throw { left: 21.8%;  margin-top: calc(35.5% - 30px);   width: 3%;    }
-#wis {              left: 8.2%;   margin-top: calc(51% - 30px);     width: 2.5%;      }
-#wis_mod {          left: 11.5%;  margin-top: calc(49% - 30px);     width: 3.3%;    }
-#wis_saving_throw { left: 21.8%;  margin-top: calc(49% - 30px);     width: 3%;    }
-#char {             left: 8.2%;   margin-top: calc(64.5% - 30px);   width: 2.5%;      }
-#char_mod {         left: 11.5%;  margin-top: calc(63% - 30px);     width: 3.3%;    }
-#char_saving_throw {left: 21.8%;  margin-top: calc(63% - 30px);     width: 3%;    }
+#int {              left: var(--ability_score_left);   margin-top: calc(37.3% - 30px);   width: var(--ability_score_width);      }
+#wis {              left: var(--ability_score_left);   margin-top: calc(51.4% - 30px);   width: var(--ability_score_width);      }
+#char {             left: var(--ability_score_left);   margin-top: calc(65.1% - 30px);   width: var(--ability_score_width);      }
 
-#str {              right: 22.3%;    margin-top: calc(36.5% - 30px);     width: 2%;     }
-#str_mod {          right: 17.5%;    margin-top: calc(35% - 30px);     width: 3.3%;     }
-#str_saving_throw { right: 7.5%;    margin-top: calc(35% - 30px);     width: 3%;     }
-#dex {              right: 22.3%;    margin-top: calc(50% - 30px);     width: 2%;     }
-#dex_mod {          right: 17.5%;    margin-top: calc(49% - 30px);     width: 3.3%;     }
-#dex_saving_throw { right: 7.5%;    margin-top: calc(49% - 30px);     width: 3%;     }
-#con {              right: 22%;    margin-top: calc(64.5% - 30px);     width: 2%;     }
-#con_mod {          right: 17.3%;    margin-top: calc(63% - 30px);     width: 3.3%;     }
-#con_saving_throw { right: 7.4%;    margin-top: calc(63% - 30px);     width: 3%;     }
+#str {              left: var(--ability_score_right);    margin-top: calc(37% - 30px);     width: var(--ability_score_width)     }
+#dex {              left: var(--ability_score_right);    margin-top: calc(51% - 30px);     width: var(--ability_score_width);     }
+#con {              left: var(--ability_score_right);    margin-top: calc(65.1% - 30px);   width: var(--ability_score_width);     }
 
-#hp_max {           left: 40%;    margin-top: calc(33% - 30px);     width: 6%;     }
-#hp_cur {           left: 55%;    margin-top: calc(33% - 30px);     width: 6%;     }
-#hp_tmp {           left: 55%;    margin-top: calc(44% - 30px);     width: 6%;     }
-#hit_die {          left: 40%;    margin-top: calc(44% - 30px);     width: 6%;     }
+#int_mod {          left: var(--ability_mod_left);  margin-top: calc(35% - 30px);        width: var(--ability_mod_width);    }
+#wis_mod {          left: var(--ability_mod_left);  margin-top: calc(49% - 30px);        width: var(--ability_mod_width);    }
+#char_mod {         left: var(--ability_mod_left);  margin-top: calc(63% - 30px);        width: var(--ability_mod_width);    }
 
-#armor_class {      left: 38.5%;    margin-top: calc(60% - 30px);     width: 3%;     }
-#initiative {       left: 50%;    margin-top: calc(59% - 30px);     width: 3%;     }
-#speed {            left: 61.5%;    margin-top: calc(60% - 30px);     width: 3%;     }
+#str_mod {          left: var(--ability_mod_right);    margin-top: calc(35% - 30px);     width: var(--ability_mod_width);     }
+#dex_mod {          left: var(--ability_mod_right);    margin-top: calc(49% - 30px);     width: var(--ability_mod_width);     }
+#con_mod {          left: var(--ability_mod_right);    margin-top: calc(63% - 30px);     width: var(--ability_mod_width);     }
+
+#int_saving_throw { left: var(--saving_throw_left);  margin-top: calc(35.5% - 30px);     width: var(--saving_throw_width);    }
+#wis_saving_throw { left: var(--saving_throw_left);  margin-top: calc(49.3% - 30px);     width: var(--saving_throw_width);    }
+#char_saving_throw {left: var(--saving_throw_left);  margin-top: calc(63.2% - 30px);     width: var(--saving_throw_width);    }
+
+#str_saving_throw { left: var(--saving_throw_right);    margin-top: calc(35.2% - 30px);   width: var(--saving_throw_width);     }
+#dex_saving_throw { left: var(--saving_throw_right);    margin-top: calc(49% - 30px);     width: var(--saving_throw_width);     }
+#con_saving_throw { left: var(--saving_throw_right);    margin-top: calc(63% - 30px);     width: var(--saving_throw_width);     }
+
+#hp_max {           left: 40%;    margin-top: calc(34% - 30px);       width: 8%;     }
+#hp_cur {           left: 55%;    margin-top: calc(34% - 30px);       width: 8%;     }
+
+#hp_tmp {           left: 55%;    margin-top: calc(45% - 30px);       width: 8%;     }
+#hit_die {          left: 40%;    margin-top: calc(45% - 30px);       width: 8%;     }
+
+#armor_class {      left: 37.6%;    margin-top: calc(60.5% - 30px);   width: 5%;     }
+#initiative {       left: 49.5%;    margin-top: calc(59% - 30px);     width: 4%;     }
+#speed {            left: 61.5%;    margin-top: calc(60% - 30px);     width: 3.7%;   }
 
 
 /* Top banner fields should be bigger */
@@ -137,7 +160,7 @@ dialog.share textarea {
 /* Resize buttons on top */
 @media all and (max-width: 1160px) {
 
-  button.save, button.share {
+  button.open_save, button.open_share {
     padding: 7px;
     border-radius: 0.7em;
   }
@@ -146,7 +169,7 @@ dialog.share textarea {
 /* Resize buttons on top, again */
 @media all and (max-width: 840px) {
 
-  button.save, button.share {
+  button.open_save, button.open_share {
     padding: 3px;
     border-radius: 0.4em;
     font-size: 90%;
@@ -157,7 +180,7 @@ dialog.share textarea {
 /* Resize buttons on top, again */
 @media all and (max-width: 650px) {
 
-  button.save, button.share {
+  button.open_save, button.open_share {
     position: fixed;
     width:30%;
     bottom:0px;
@@ -168,10 +191,7 @@ dialog.share textarea {
     border-radius: 1em;
   }
 
-  button.save {
-
-  }
-  button.share {
+  button.open_share {
     right: 0px;
   }
 }
@@ -203,9 +223,10 @@ dialog.share textarea {
 }
 
 
-@media all and (max-width: 600px) {
+@media all and (max-width: 650px) {
   input[type=text] {
     font-size: 14px;
+    padding-top: 15px;
   }
 
   /* Top banner fields should be bigger */
@@ -221,5 +242,12 @@ dialog.share textarea {
   /* HP fields should be bigger */
   #hp_max, #hp_cur, #hp_tmp, #hit_die {
     font-size: 18px;
+  }
+}
+
+
+@media all and (max-width: 450px) {
+  input[type=text] {
+    font-size: 11px;
   }
 }
