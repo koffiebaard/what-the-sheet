@@ -39,10 +39,11 @@ save.addEventListener('click', async() => {
         modal_save.close();
       }, 500);
     } else {
-      if (response.errors)
+      if (response.errors) {
         show_notice_fail("Validation failed unfortunately", response.errors);
-      else
+      } else {
         show_notice_fail();
+      }
 
       console.log(response);
     }
@@ -81,7 +82,6 @@ function show_notice_fail(message_override = null, errors = []) {
     errors.forEach((error) => {
       document.querySelector('dialog .notice.fail').innerHTML += `<br />- ${error}`
     });
-
   }
   document.querySelector('dialog .notice.fail').style.display = "block";
 }
