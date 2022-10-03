@@ -6,7 +6,6 @@ use Phinx\Migration\Manager;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\NullOutput;
 
-
 function connect_database() {
   $logger = create_logger();
 

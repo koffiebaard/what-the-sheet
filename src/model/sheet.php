@@ -1,5 +1,6 @@
 <?php
 namespace Sheet;
+
 require_once(__DIR__.'/../database.php');
 
 use \PDO;
