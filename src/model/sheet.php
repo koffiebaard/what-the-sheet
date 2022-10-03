@@ -1,5 +1,6 @@
 <?php
 namespace Sheet;
+require_once(__DIR__.'/../database.php');
 
 use \PDO;
 use \RandomLib;
@@ -31,36 +32,17 @@ class SoSheety
     ,'con'                    => 'nullable|numeric|min:0'
     ,'con_mod'                => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
     ,'con_saving_throw'       => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
-    ,'hp_max'                 => 'nullable|numeric'
-    ,'hp_cur'                 => 'nullable|numeric'
-    ,'hp_tmp'                 => 'nullable|numeric'
+    ,'hp_max'                 => 'nullable|numeric|min:0'
+    ,'hp_cur'                 => 'nullable|numeric|min:0'
+    ,'hp_tmp'                 => 'nullable|numeric|min:0'
     ,'hit_die'                => 'nullable|regex:/^[0-9]{1,2}d[0-9]{1,2}$/'
-    ,'armor_class'            => 'nullable|numeric'
+    ,'armor_class'            => 'nullable|numeric|min:0'
     ,'initiative'             => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
-    ,'speed'                  => 'nullable|numeric'
+    ,'speed'                  => 'nullable|numeric|min:0'
   ];
 
   public function __construct() {
-    try {
-      // Create a connection purely in memory for tests
-      if (getenv('WTS_DB_IN_MEMORY') && getenv('WTS_DB_IN_MEMORY') == 1) {
-        $this->db_connection = new PDO('sqlite::memory:');
-
-        $sql = file_get_contents(__DIR__.'/../../structure.sql');
-        $this->db_connection->exec($sql);
-
-      // Create a regular MySQL connection
-      } else {
-        $this->db_connection = new PDO(
-          'mysql:host=' . getenv('WTS_DB_HOSTNAME') . ';dbname=' . getenv('WTS_DB_NAME'),
-          getenv('WTS_DB_USERNAME'),
-          getenv('WTS_DB_PASSWORD')
-        );
-      }
-    } catch (Exception $e) {
-      $logger->error($e->getMessage());
-      die("Something went wrong.");
-    }
+    $this->db_connection = connect_database();
   }
 
   private function execute($query, $parameters = []) {
