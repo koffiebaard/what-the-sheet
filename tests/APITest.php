@@ -1,4 +1,6 @@
 <?php
+require_once(__DIR__.'/../src/logger.php');
+
 use Nekofar\Slim\Test\Traits\AppTestTrait;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 
@@ -38,7 +40,8 @@ class APITest extends BaseTestCase {
   use AppTestTrait;
 
   protected function setUp(): void {
-    $app = create_app();
+    $logger = create_logger();
+    $app = create_app($logger);
     $this->setUpApp($app);
   }
 

@@ -9,7 +9,8 @@
         "slim/psr7": "^1.5",
         "php-di/php-di": "^6.4",
         "monolog/monolog": "^3.2",
-        "rakit/validation": "^1.4"
+        "rakit/validation": "^1.4",
+        "robmorgan/phinx": "^0.12.13"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
@@ -23,6 +24,8 @@
         "start": "cd src; php -S localhost:8000",
         "test": "vendor/bin/phpunit --verbose tests",
         "lint": "vendor/bin/phpcs -n src",
-        "lint-fix": "vendor/bin/phpcbf -n src"
+        "lint-fix": "vendor/bin/phpcbf -n src",
+        "migrate-up": "vendor/bin/phinx migrate -e whatthesheet",
+        "migrate-down": "vendor/bin/phinx rollback -e whatthesheet"
     }
 }
