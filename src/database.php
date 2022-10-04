@@ -4,7 +4,7 @@ use Phinx\Migration\Manager;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\NullOutput;
 
-function connect_database() {
+function connect_database(): PDO {
   $db_options = [
     \PDO::ATTR_ERRMODE            => \PDO::ERRMODE_EXCEPTION,
     \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
@@ -24,7 +24,7 @@ function connect_database() {
   );
 }
 
-function create_memory_database($db_options) {
+function create_memory_database(array $db_options): PDO {
   // Memory db connection
   $db_connection = new PDO('sqlite::memory:', null, null, $db_options);
 

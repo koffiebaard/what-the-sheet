@@ -10,7 +10,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
 
-function create_app($logger) {
+function create_app(Monolog\Logger $logger) {
   // Create Container using PHP-DI
   $container = new Container();
   AppFactory::setContainer($container);

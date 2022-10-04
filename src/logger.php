@@ -3,7 +3,7 @@ use Monolog\Level;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
-function create_logger() {
+function create_logger(): Monolog\Logger {
   $logger = new Logger('what-the-sheet');
   $logger->pushHandler(new StreamHandler(__DIR__.'/../logs/log.log', Level::Warning));
 

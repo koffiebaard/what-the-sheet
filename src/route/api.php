@@ -1,9 +1,11 @@
 <?php
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use Slim\App as App;
+use Sheet\SoSheety as SoSheety;
 
-function addAPIRoutes($app, $db_connection) {
-  $so_sheety = new Sheet\SoSheety($db_connection);
+function addAPIRoutes(App $app, PDO $db_connection) {
+  $so_sheety = new SoSheety($db_connection);
 
   // Create sheet
   $app->post('/api/sheet', function (Request $request, Response $response, $args) use ($so_sheety) {
