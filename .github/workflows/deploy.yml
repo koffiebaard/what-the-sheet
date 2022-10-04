@@ -20,7 +20,7 @@ jobs:
       run: ssh whatthesheet@whatthesheet.app "cd /web/whatthesheet && /usr/bin/git pull"
 
     - name: Update dependencies
-      run: ssh whatthesheet@whatthesheet.app "cd /web/whatthesheet && /usr/local/bin/composer install --no-dev"
+      run: ssh whatthesheet@whatthesheet.app "cd /web/whatthesheet && /usr/local/bin/composer install --no-dev --ignore-platform-reqs"
 
     - name: Migrate up
       run: ssh whatthesheet@whatthesheet.app "cd /web/whatthesheet && /usr/local/bin/composer run-script migrate-up"
