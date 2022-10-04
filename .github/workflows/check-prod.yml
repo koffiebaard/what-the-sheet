@@ -21,7 +21,7 @@ jobs:
     - name: Run tests
       run: ssh whatthesheet@whatthesheet.app "cd /web/whatthesheet && /usr/local/bin/composer test"
     - name: Send mail
-      if: always()
+      if: ${{ job.status != 'success' }}
       uses: dawidd6/action-send-mail@v2
       with:
         server_address: smtp.gmail.com
