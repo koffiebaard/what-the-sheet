@@ -15,8 +15,7 @@
         "nekofar/slim-test": "^2.0"
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "*",
-        "sebastian/phpdcd": "*"
+        "squizlabs/php_codesniffer": "*"
     },
     "scripts": {
         "post-install-cmd": "@test",
