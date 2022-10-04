@@ -84,6 +84,35 @@ body#share input[type=text] {
 #initiative {       left: 49.5%;    margin-top: calc(59% - 30px);     width: 4%;     }
 #speed {            left: 61.5%;    margin-top: calc(60% - 30px);     width: 3.7%;   }
 
+/* dex */
+#acrobatics {       left: 3.5%;    margin-top: calc(76% - 30px);       width: 2%;   }
+#sleight_of_hand {  left: 3.5%;    margin-top: calc(78.2% - 30px);     width: 2%;   }
+#stealth {          left: 3.5%;    margin-top: calc(80.4% - 30px);     width: 2%;   }
+
+/* int */
+#arcana {           left: 21%;     margin-top: calc(75.8% - 30px);    width: 2%;   }
+#history {          left: 21%;     margin-top: calc(78% - 30px);      width: 2%;   }
+#investigation {    left: 21%;     margin-top: calc(80.4% - 30px);      width: 2%;   }
+#nature {           left: 21%;     margin-top: calc(82.6% - 30px);      width: 2%;   }
+#religion {         left: 21%;     margin-top: calc(84.8% - 30px);      width: 2%;   }
+
+/* char */
+#deception {        left: 38.6%;    margin-top: calc(75.8% - 30px);     width: 2%;   }
+#intimidation {     left: 38.6%;    margin-top: calc(78% - 30px);       width: 2%;   }
+#performance {      left: 38.6%;    margin-top: calc(80.2% - 30px);     width: 2%;   }
+#persuasion {       left: 38.6%;    margin-top: calc(82.7% - 30px);     width: 2%;   }
+
+/* wis */
+#animal_handling {  left: 61.5%;    margin-top: calc(60% - 30px);     width: 2%;   }
+#insight {          left: 61.5%;    margin-top: calc(60% - 30px);     width: 2%;   }
+#medicine {         left: 61.5%;    margin-top: calc(60% - 30px);     width: 2%;   }
+#perception {       left: 61.5%;    margin-top: calc(60% - 30px);     width: 2%;   }
+#survival {         left: 61.5%;    margin-top: calc(60% - 30px);     width: 2%;   }
+
+/* str */
+#athletics {        left: 61.5%;    margin-top: calc(60% - 30px);     width: 2%;   }
+
+
 
 /* Top banner fields should be bigger */
 #class, #name, #race {

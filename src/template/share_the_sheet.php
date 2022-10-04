@@ -39,6 +39,25 @@
     <input type="text" name="armor_class" value="<?=$sheet['armor_class'] ?? ''; ?>" id="armor_class" disabled />
     <input type="text" name="initiative" value="<?=$sheet['initiative'] ?? ''; ?>" id="initiative" disabled />
     <input type="text" name="speed" value="<?=$sheet['speed'] ?? ''; ?>" id="speed" disabled />
+    <input type="text" name="speed" value="<?=$sheet['speed'] ?? ''; ?>" id="speed" disabled />
+    <input type="text" name="acrobatics" value="<?=$sheet['acrobatics'] ?? ''; ?> id="acrobatics" disabled />
+    <input type="text" name="animal_handling" value="<?=$sheet['animal_handling'] ?? ''; ?> id="animal_handling" disabled />
+    <input type="text" name="arcana" value="<?=$sheet['arcana'] ?? ''; ?> id="arcana" disabled />
+    <input type="text" name="athletics" value="<?=$sheet['athletics'] ?? ''; ?> id="athletics" disabled />
+    <input type="text" name="deception" value="<?=$sheet['deception'] ?? ''; ?> id="deception" disabled />
+    <input type="text" name="history" value="<?=$sheet['history'] ?? ''; ?> id="history" disabled />
+    <input type="text" name="insight" value="<?=$sheet['insight'] ?? ''; ?> id="insight" disabled />
+    <input type="text" name="intimidation" value="<?=$sheet['intimidation'] ?? ''; ?> id="intimidation" disabled />
+    <input type="text" name="investigation" value="<?=$sheet['investigation'] ?? ''; ?> id="investigation" disabled />
+    <input type="text" name="medicine" value="<?=$sheet['medicine'] ?? ''; ?> id="medicine" disabled />
+    <input type="text" name="nature" value="<?=$sheet['nature'] ?? ''; ?> id="nature" disabled />
+    <input type="text" name="perception" value="<?=$sheet['perception'] ?? ''; ?> id="perception" disabled />
+    <input type="text" name="performance" value="<?=$sheet['performance'] ?? ''; ?> id="performance" disabled />
+    <input type="text" name="persuasion" value="<?=$sheet['persuasion'] ?? ''; ?> id="persuasion" disabled />
+    <input type="text" name="religion" value="<?=$sheet['religion'] ?? ''; ?> id="religion" disabled />
+    <input type="text" name="sleight_of_hand" value="<?=$sheet['sleight_of_hand'] ?? ''; ?> id="sleight_of_hand" disabled />
+    <input type="text" name="stealth" value="<?=$sheet['stealth'] ?? ''; ?> id="stealth" disabled />
+    <input type="text" name="survival" value="<?=$sheet['survival'] ?? ''; ?> id="survival" disabled />
   </div>
   </body>
 </html>
