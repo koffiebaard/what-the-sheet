@@ -10,15 +10,16 @@
         "php-di/php-di": "^6.4",
         "monolog/monolog": "^3.2",
         "rakit/validation": "^1.4",
-        "robmorgan/phinx": "^0.12.13"
+        "robmorgan/phinx": "^0.12.13",
+        "phpunit/phpunit": "^9.5",
+        "nekofar/slim-test": "^2.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.5",
-        "nekofar/slim-test": "^2.0",
         "squizlabs/php_codesniffer": "*",
         "sebastian/phpdcd": "*"
     },
     "scripts": {
+        "post-install-cmd": "@test",
         "start": "cd src; php -S 0.0.0.0:8000",
         "test": "vendor/bin/phpunit --verbose tests",
         "test-mem": "vendor/bin/phpunit --verbose tests",
