@@ -19,11 +19,11 @@
     },
     "scripts": {
         "post-install-cmd": "@test",
-        "start": "cd src; php -S 0.0.0.0:8000",
+        "start": "cd public; php -S 0.0.0.0:8000",
         "test": "vendor/bin/phpunit --verbose tests",
         "test-mem": "vendor/bin/phpunit --verbose tests",
-        "lint": "vendor/bin/phpcs -n src",
-        "lint-fix": "vendor/bin/phpcbf -n src",
+        "lint": "vendor/bin/phpcs -n src public",
+        "lint-fix": "vendor/bin/phpcbf -n src public",
         "migrate-up": "vendor/bin/phinx migrate -e whatthesheet",
         "migrate-down": "vendor/bin/phinx rollback -e whatthesheet",
         "check-all": [

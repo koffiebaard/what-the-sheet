@@ -9,9 +9,9 @@ putenv("DEVELOPMENT=0");
 
 define('PROJECT_ROOT', realpath(__DIR__ . '/..'));
 
-require_once PROJECT_ROOT . '/vendor/autoload.php';
-require PROJECT_ROOT . '/src/app.php';
-require __DIR__.'/mocks.php';
+require_once(PROJECT_ROOT.'/vendor/autoload.php');
+require_once(PROJECT_ROOT . '/src/app.php');
+require_once(__DIR__.'/mocks.php');
 
 $dotenv = Dotenv\Dotenv::createUnsafeImmutable(__DIR__ . '/..');
 $dotenv->safeLoad();

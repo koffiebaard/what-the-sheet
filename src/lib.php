@@ -1,7 +1,7 @@
 <?php
 // Load template file with given parameters and return a string
 function template($template_filename, $parameters = []) {
-  $filename = "template/$template_filename";
+  $filename = __DIR__."/template/$template_filename";
 
   if (!file_exists($filename) || stristr($template_filename, '..')) {
     return '';

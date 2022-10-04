@@ -1,9 +1,9 @@
 <?php
 require_once(__DIR__.'/database.php');
-require_once(__DIR__."/model/sheet.php");
-require_once("route/sheet.php");
-require_once("route/api.php");
-require_once("lib.php");
+require_once(__DIR__.'/model/sheet.php');
+require_once(__DIR__.'/route/sheet.php');
+require_once(__DIR__.'/route/api.php');
+require_once(__DIR__.'/lib.php');
 
 use DI\Container;
 use Psr\Http\Message\ResponseInterface as Response;
