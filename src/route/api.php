@@ -8,7 +8,7 @@ function addAPIRoutes(App $app, PDO $db_connection) {
   $so_sheety = new SoSheety($db_connection);
 
   // Create sheet
-  $app->post('/api/sheet', function (Request $request, Response $response, $args) use ($so_sheety) {
+  $app->post('/api/sheet', function (Request $request, Response $response, array $args) use ($so_sheety) {
     $req_data = json_decode($request->getBody(), true) ?? [];
 
     // 400 Bad Request
@@ -25,7 +25,7 @@ function addAPIRoutes(App $app, PDO $db_connection) {
   });
 
   // Update sheet
-  $app->put('/api/sheet/{id:[a-f0-9]+}', function (Request $request, Response $response, $args) use ($so_sheety) {
+  $app->put('/api/sheet/{id:[a-f0-9]+}', function (Request $request, Response $response, array $args) use ($so_sheety) {
     $req_data = json_decode($request->getBody(), true) ?? [];
 
     // 404 not found
@@ -47,7 +47,7 @@ function addAPIRoutes(App $app, PDO $db_connection) {
   });
 
   // Delete sheet
-  $app->delete('/api/sheet/{id:[a-f0-9]+}', function (Request $request, Response $response, $args) use ($so_sheety) {
+  $app->delete('/api/sheet/{id:[a-f0-9]+}', function (Request $request, Response $response, array $args) use ($so_sheety) {
     // 404 not found
     if ($so_sheety->get_by_id($args['id']) === false) {
       return error_response($response, "Sheet not found", 404);
