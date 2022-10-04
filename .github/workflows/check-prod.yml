@@ -19,7 +19,7 @@ jobs:
         known_hosts: ${{ secrets.SSH_KNOWN_HOST }}
         if_key_exists: ignore
     - name: Run tests
-      run: ssh whatthesheet@whatthesheet.app "cd /web/whatthesheet && /usr/local/bin/composer test"
+      run: ssh whatthesheet@whatthesheet.app "cd /web/whatthesheet && /usr/local/bin/composer test"; exit 1;
     - name: Send mail
       if: ${{ job.status != 'success' }}
       uses: dawidd6/action-send-mail@v2
