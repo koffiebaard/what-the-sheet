@@ -1,10 +1,8 @@
 name: Run Production Tests
 
 on:
-  push:
-    branches: ["main"]
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "* */6 * * *"
 
 jobs:
   run_prod_tests:
@@ -19,7 +17,7 @@ jobs:
         known_hosts: ${{ secrets.SSH_KNOWN_HOST }}
         if_key_exists: ignore
     - name: Run tests
-      run: ssh whatthesheet@whatthesheet.app "cd /web/whatthesheet && /usr/local/bin/composer test"; exit 1;
+      run: ssh whatthesheet@whatthesheet.app "cd /web/whatthesheet && /usr/local/bin/composer test"
     - name: Send mail
       if: failure()
       uses: dawidd6/action-send-mail@v2
