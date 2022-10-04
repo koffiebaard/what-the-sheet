@@ -19,7 +19,6 @@
         "sebastian/phpdcd": "*"
     },
     "scripts": {
-        "post-install-cmd": "@test",
         "start": "cd src; php -S 0.0.0.0:8000",
         "test": "vendor/bin/phpunit --verbose tests",
         "test-mem": "vendor/bin/phpunit --verbose tests",
