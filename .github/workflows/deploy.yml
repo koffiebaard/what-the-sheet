@@ -5,7 +5,8 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  deploy:
+    name: "Deploy"
     runs-on: ubuntu-latest
     steps:
     - name: Install SSH Key
@@ -23,6 +24,9 @@ jobs:
 
     - name: Migrate up
       run: ssh whatthesheet@whatthesheet.app "cd /web/whatthesheet && /usr/local/bin/composer run-script migrate-up"
+
+    - name: Run tests
+      run: ssh whatthesheet@whatthesheet.app "cd /web/whatthesheet && /usr/local/bin/composer test"
 
     - name: Clear cache
       run: ssh whatthesheet@whatthesheet.app "sudo varnishadm -S /etc/varnish/secret -T 127.0.0.1:6082 \"ban req.http.host == whatthesheet.app\""

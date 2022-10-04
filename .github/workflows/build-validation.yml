@@ -13,7 +13,8 @@ env:
   WTS_DB_IN_MEMORY: 1
 
 jobs:
-  build:
+  build_validation:
+    name: "Build Validation"
 
     runs-on: ubuntu-latest
 
@@ -39,4 +40,4 @@ jobs:
       run: composer run-script lint
 
     - name: Run tests
-      run: composer run-script test
+      run: composer test

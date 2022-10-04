@@ -2,7 +2,9 @@
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-function addSheetRoutes($app, $so_sheety) {
+function addSheetRoutes($app, $db_connection) {
+  $so_sheety = new Sheet\SoSheety($db_connection);
+
   // Empty sheet
   $app->get('/', function (Request $request, Response $response, $args) use ($so_sheety) {
     $response->getBody()->write(template('show_the_sheet.php'));

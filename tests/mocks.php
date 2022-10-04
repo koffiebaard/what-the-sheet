@@ -1,0 +1,33 @@
+<?php
+
+define('VALID_SHEET_MOCK', [
+  "name" => "Merry",
+  "race" => "Hobbit",
+  "class" => "Rogue",
+  "level" => "3",
+  "int" => "16",
+  "int_mod" => "+3",
+  "int_saving_throw" => "+4",
+  "wis" => "18",
+  "wis_mod" => "+4",
+  "wis_saving_throw" => "+5",
+  "char" => "12",
+  "char_mod" => "+2",
+  "char_saving_throw" => "+5",
+  "str" => "13",
+  "str_mod" => "+1",
+  "str_saving_throw" => "-2",
+  "dex" => "17",
+  "dex_mod" => "+3",
+  "dex_saving_throw" => "+2",
+  "con" => "10",
+  "con_mod" => "-1",
+  "con_saving_throw" => "-1",
+  "hp_max" => "49",
+  "hp_cur" => "25",
+  "hp_tmp" => "0",
+  "hit_die" => "1d8",
+  "armor_class" => "16",
+  "initiative" => "+3",
+  "speed" => "30"
+]);

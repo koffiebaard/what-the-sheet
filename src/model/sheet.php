@@ -1,8 +1,6 @@
 <?php
 namespace Sheet;
 
-require_once(__DIR__.'/../database.php');
-
 use \PDO;
 use \RandomLib;
 use Rakit\Validation\Validator;
@@ -11,39 +9,39 @@ class SoSheety
 {
   private $db_connection;
   public $validation_rules = [
-     'name'                   => 'required'
-    ,'race'                   => 'required'
-    ,'class'                  => 'required'
+     'name'                   => 'required|max:50'
+    ,'race'                   => 'required|max:50'
+    ,'class'                  => 'required|max:50'
     ,'level'                  => 'nullable|numeric|min:1|max:100'
-    ,'int'                    => 'nullable|numeric|min:0'
+    ,'int'                    => 'nullable|numeric|min:0|max:100'
     ,'int_mod'                => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
     ,'int_saving_throw'       => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
-    ,'wis'                    => 'nullable|numeric|min:0'
+    ,'wis'                    => 'nullable|numeric|min:0|max:100'
     ,'wis_mod'                => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
     ,'wis_saving_throw'       => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
-    ,'char'                   => 'nullable|numeric|min:0'
+    ,'char'                   => 'nullable|numeric|min:0|max:100'
     ,'char_mod'               => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
     ,'char_saving_throw'      => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
-    ,'str'                    => 'nullable|numeric|min:0'
+    ,'str'                    => 'nullable|numeric|min:0|max:100'
     ,'str_mod'                => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
     ,'str_saving_throw'       => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
-    ,'dex'                    => 'nullable|numeric|min:0'
+    ,'dex'                    => 'nullable|numeric|min:0|max:100'
     ,'dex_mod'                => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
     ,'dex_saving_throw'       => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
-    ,'con'                    => 'nullable|numeric|min:0'
+    ,'con'                    => 'nullable|numeric|min:0|max:100'
     ,'con_mod'                => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
     ,'con_saving_throw'       => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
-    ,'hp_max'                 => 'nullable|numeric|min:0'
-    ,'hp_cur'                 => 'nullable|numeric|min:0'
-    ,'hp_tmp'                 => 'nullable|numeric|min:0'
+    ,'hp_max'                 => 'nullable|numeric|min:0|max:1000'
+    ,'hp_cur'                 => 'nullable|numeric|min:0|max:1000'
+    ,'hp_tmp'                 => 'nullable|numeric|min:0|max:1000'
     ,'hit_die'                => 'nullable|regex:/^[0-9]{1,2}d[0-9]{1,2}$/'
-    ,'armor_class'            => 'nullable|numeric|min:0'
+    ,'armor_class'            => 'nullable|numeric|min:0|max:1000'
     ,'initiative'             => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
-    ,'speed'                  => 'nullable|numeric|min:0'
+    ,'speed'                  => 'nullable|numeric|min:0|max:1000'
   ];
 
-  public function __construct() {
-    $this->db_connection = connect_database();
+  public function __construct($db_connection) {
+    $this->db_connection = $db_connection;
   }
 
   private function execute($query, $parameters = []) {
@@ -53,11 +51,11 @@ class SoSheety
   }
 
   private function fetch($query, $parameters = []) {
-    return $this->execute($query, $parameters)->fetch(PDO::FETCH_ASSOC);
+    return $this->execute($query, $parameters)->fetch();
   }
 
   private function fetch_all($query, $parameters = []) {
-    return $this->execute($query, $parameters)->fetchAll(PDO::FETCH_ASSOC);
+    return $this->execute($query, $parameters)->fetchAll();
   }
 
   public function validate($sheet) {
@@ -232,6 +230,19 @@ class SoSheety
     ', $sheet);
 
     $sheet = $this->get_by_id($id);
+    clear_varnish_cache($id, $sheet['share_token']);
+
+    return $sheet;
+  }
+
+  public function delete_sheet($id) {
+    $sheet = $this->get_by_id($id);
+
+    $this->execute('
+      delete from `sheet`
+      where `id` = :id
+    ', ["id" => $id]);
+
     clear_varnish_cache($id, $sheet['share_token']);
 
     return $sheet;
