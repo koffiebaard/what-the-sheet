@@ -38,6 +38,25 @@ class SoSheety
     ,'armor_class'            => 'nullable|numeric|min:0|max:1000'
     ,'initiative'             => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
     ,'speed'                  => 'nullable|numeric|min:0|max:1000'
+
+    ,'acrobatics'             => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
+    ,'animal_handling'        => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
+    ,'arcana'                 => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
+    ,'athletics'              => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
+    ,'deception'              => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
+    ,'history'                => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
+    ,'insight'                => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
+    ,'intimidation'           => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
+    ,'investigation'          => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
+    ,'medicine'               => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
+    ,'nature'                 => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
+    ,'perception'             => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
+    ,'performance'            => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
+    ,'persuasion'             => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
+    ,'religion'               => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
+    ,'sleight_of_hand'        => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
+    ,'stealth'                => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
+    ,'survival'               => 'nullable|regex:/^[\+\-]{1}[0-9]{1,2}$/'
   ];
 
   public function __construct($db_connection) {
@@ -151,6 +170,24 @@ class SoSheety
         ,`initiative`
         ,`speed`
         ,`share_token`
+        ,`acrobatics`
+        ,`animal_handling`
+        ,`arcana`
+        ,`athletics`
+        ,`deception`
+        ,`history`
+        ,`insight`
+        ,`intimidation`
+        ,`investigation`
+        ,`medicine`
+        ,`nature`
+        ,`perception`
+        ,`performance`
+        ,`persuasion`
+        ,`religion`
+        ,`sleight_of_hand`
+        ,`stealth`
+        ,`survival`
       )
       values (
          :id
@@ -184,6 +221,24 @@ class SoSheety
         ,:initiative
         ,:speed
         ,:share_token
+        ,:acrobatics
+        ,:animal_handling
+        ,:arcana
+        ,:athletics
+        ,:deception
+        ,:history
+        ,:insight
+        ,:intimidation
+        ,:investigation
+        ,:medicine
+        ,:nature
+        ,:perception
+        ,:performance
+        ,:persuasion
+        ,:religion
+        ,:sleight_of_hand
+        ,:stealth
+        ,:survival
       )
     ', $sheet);
 
@@ -224,7 +279,25 @@ class SoSheety
           `hit_die` = :hit_die,
           `armor_class` = :armor_class,
           `initiative` = :initiative,
-          `speed` = :speed
+          `speed` = :speed,
+          `acrobatics` = :acrobatics,
+          `animal_handling` = :animal_handling,
+          `arcana` = :arcana,
+          `athletics` = :athletics,
+          `deception` = :deception,
+          `history` = :history,
+          `insight` = :insight,
+          `intimidation` = :intimidation,
+          `investigation` = :investigation,
+          `medicine` = :medicine,
+          `nature` = :nature,
+          `perception` = :perception,
+          `performance` = :performance,
+          `persuasion` = :persuasion,
+          `religion` = :religion,
+          `sleight_of_hand` = :sleight_of_hand,
+          `stealth` = :stealth,
+          `survival` = :survival
       where
         `id` = :id
     ', $sheet);
