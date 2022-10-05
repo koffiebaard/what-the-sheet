@@ -103,14 +103,14 @@ body#share input[type=text] {
 #persuasion {       left: 38.6%;    margin-top: calc(82.7% - 30px);     width: 2%;   }
 
 /* wis */
-#animal_handling {  left: 61.5%;    margin-top: calc(60% - 30px);     width: 2%;   }
-#insight {          left: 61.5%;    margin-top: calc(60% - 30px);     width: 2%;   }
-#medicine {         left: 61.5%;    margin-top: calc(60% - 30px);     width: 2%;   }
-#perception {       left: 61.5%;    margin-top: calc(60% - 30px);     width: 2%;   }
-#survival {         left: 61.5%;    margin-top: calc(60% - 30px);     width: 2%;   }
+#animal_handling {  left: 56%;    margin-top: calc(75.8% - 30px);     width: 2%;   }
+#insight {          left: 56%;    margin-top: calc(77.8% - 30px);     width: 2%;   }
+#medicine {         left: 56%;    margin-top: calc(80.1% - 30px);     width: 2%;   }
+#perception {       left: 56%;    margin-top: calc(82.5% - 30px);     width: 2%;   }
+#survival {         left: 56%;    margin-top: calc(84.6% - 30px);     width: 2%;   }
 
 /* str */
-#athletics {        left: 61.5%;    margin-top: calc(60% - 30px);     width: 2%;   }
+#athletics {        left: 73.5%;    margin-top: calc(75.7% - 30px);     width: 2%;   }
 
 
 

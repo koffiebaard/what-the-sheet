@@ -49,23 +49,23 @@
       <input type="text" name="initiative" value="<?=$sheet['initiative'] ?? ''; ?>" id="initiative" placeholder="" />
       <input type="text" name="speed" value="<?=$sheet['speed'] ?? ''; ?>" id="speed" placeholder="" />
       <input type="text" name="acrobatics" value="<?=$sheet['acrobatics'] ?? ''; ?>" id="acrobatics" placeholder="" />
-      <input type="text" name="animal_handling" value="<?=$sheet['animal_handling'] ?? ''; ?>" id="animal_handling" placeholder="" />
-      <input type="text" name="arcana" value="<?=$sheet['arcana'] ?? ''; ?>" id="arcana" placeholder="" />
-      <input type="text" name="athletics" value="<?=$sheet['athletics'] ?? ''; ?>" id="athletics" placeholder="" />
-      <input type="text" name="deception" value="<?=$sheet['deception'] ?? ''; ?>" id="deception" placeholder="" />
-      <input type="text" name="history" value="<?=$sheet['history'] ?? ''; ?>" id="history" placeholder="" />
-      <input type="text" name="insight" value="<?=$sheet['insight'] ?? ''; ?>" id="insight" placeholder="" />
-      <input type="text" name="intimidation" value="<?=$sheet['intimidation'] ?? ''; ?>" id="intimidation" placeholder="" />
-      <input type="text" name="investigation" value="<?=$sheet['investigation'] ?? ''; ?>" id="investigation" placeholder="" />
-      <input type="text" name="medicine" value="<?=$sheet['medicine'] ?? ''; ?>" id="medicine" placeholder="" />
-      <input type="text" name="nature" value="<?=$sheet['nature'] ?? ''; ?>" id="nature" placeholder="" />
-      <input type="text" name="perception" value="<?=$sheet['perception'] ?? ''; ?>" id="perception" placeholder="" />
-      <input type="text" name="performance" value="<?=$sheet['performance'] ?? ''; ?>" id="performance" placeholder="" />
-      <input type="text" name="persuasion" value="<?=$sheet['persuasion'] ?? ''; ?>" id="persuasion" placeholder="" />
-      <input type="text" name="religion" value="<?=$sheet['religion'] ?? ''; ?>" id="religion" placeholder="" />
-      <input type="text" name="sleight_of_hand" value="<?=$sheet['sleight_of_hand'] ?? ''; ?>" id="sleight_of_hand" placeholder="" />
-      <input type="text" name="stealth" value="<?=$sheet['stealth'] ?? ''; ?>" id="stealth" placeholder="" />
-      <input type="text" name="survival" value="<?=$sheet['survival'] ?? ''; ?>" id="survival" placeholder="" />
+      <input type="text" name="sleight_of_hand" value="<?=$sheet['animal_handling'] ?? ''; ?>" id="sleight_of_hand" placeholder="" />
+      <input type="text" name="stealth" value="<?=$sheet['arcana'] ?? ''; ?>" id="stealth" placeholder="" />
+      <input type="text" name="arcana" value="<?=$sheet['athletics'] ?? ''; ?>" id="arcana" placeholder="" />
+      <input type="text" name="history" value="<?=$sheet['deception'] ?? ''; ?>" id="history" placeholder="" />
+      <input type="text" name="investigation" value="<?=$sheet['history'] ?? ''; ?>" id="investigation" placeholder="" />
+      <input type="text" name="nature" value="<?=$sheet['insight'] ?? ''; ?>" id="nature" placeholder="" />
+      <input type="text" name="religion" value="<?=$sheet['intimidation'] ?? ''; ?>" id="religion" placeholder="" />
+      <input type="text" name="deception" value="<?=$sheet['investigation'] ?? ''; ?>" id="deception" placeholder="" />
+      <input type="text" name="intimidation" value="<?=$sheet['medicine'] ?? ''; ?>" id="intimidation" placeholder="" />
+      <input type="text" name="performance" value="<?=$sheet['nature'] ?? ''; ?>" id="performance" placeholder="" />
+      <input type="text" name="persuasion" value="<?=$sheet['perception'] ?? ''; ?>" id="persuasion" placeholder="" />
+      <input type="text" name="animal_handling" value="<?=$sheet['performance'] ?? ''; ?>" id="animal_handling" placeholder="" />
+      <input type="text" name="insight" value="<?=$sheet['persuasion'] ?? ''; ?>" id="insight" placeholder="" />
+      <input type="text" name="medicine" value="<?=$sheet['religion'] ?? ''; ?>" id="medicine" placeholder="" />
+      <input type="text" name="perception" value="<?=$sheet['sleight_of_hand'] ?? ''; ?>" id="perception" placeholder="" />
+      <input type="text" name="survival" value="<?=$sheet['stealth'] ?? ''; ?>" id="survival" placeholder="" />
+      <input type="text" name="athletics" value="<?=$sheet['survival'] ?? ''; ?>" id="athletics" placeholder="" />
     </div>
     <dialog class="save">
       <h1>Save sheet</h1>
